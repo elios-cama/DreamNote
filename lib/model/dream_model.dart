@@ -33,7 +33,7 @@ class DreamModel {
   DateTime time;
 
   DreamModel(
-      {required this.id,
+      { this.id,
       required this.title,
       required this.description,
       required this.picturepath,
