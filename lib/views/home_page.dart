@@ -41,123 +41,129 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      extendBodyBehindAppBar : true,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
-        child: AppBar(
-      backgroundColor: Colors.white.withOpacity(0),
-      elevation: 0,
-      bottom: PreferredSize(
-          preferredSize: Size.infinite,
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                LittlePurpleButton(
-                  icon: FontAwesomeIcons.moon,
-                  onpress: (){}
-                ),
-                Image.asset(
-                  'lib/assets/logo_dr.png',
-                  fit: BoxFit.cover,
-                  height: 100,
-                ),
-                LittlePurpleButton(
-                  icon: FontAwesomeIcons.search,
-                  onpress: (){},
-                ),
-              ],
-            ),
-          )),
-      automaticallyImplyLeading: false,
-    ),
-      ),
-      body: Container(
-          constraints: BoxConstraints.expand(),
-          decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("lib/assets/gradient.png"),
+    return Stack(
+      children: [
+        Image.asset(
+            "lib/assets/gradient.png",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
-        ),
-          child: Center(
-          child: isLoading
-              ? CircularProgressIndicator()
-              : dreams.isEmpty
-                  ? Text(
-                      'No Dreams',
-                      style: TextStyle( fontSize: 24),
-                    )
-                  : GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ), 
-                    itemCount: dreams.length,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    
-                    itemBuilder: (context, index){
-                      final dream = dreams[index];
-                    return GestureDetector(
-                      onTap: ()async{
-                        await Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DreamDetailPage(),
-                          ));
-                          refreshDreams();
-                      },
-                      child: DreamCardWidget(dream: dreams[index],index: index,),
-                    );
-                    })
-                    )
-        ),
-        
 
-    floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Color(0xFF7F5FFF),
-          onPressed: () {
-            Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddEditPage(),
-                        ),
+
+        Scaffold(
+          backgroundColor: Colors.transparent,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(100.0),
+          child: AppBar(
+        //backgroundColor: Colors.white.withOpacity(0),
+        backgroundColor : Colors.transparent,
+        elevation: 0,
+        bottom: PreferredSize(
+            preferredSize: Size.infinite,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  LittlePurpleButton(
+                    icon: FontAwesomeIcons.moon,
+                    onpress: (){}
+                  ),
+                  Image.asset(
+                    'lib/assets/logo_dr.png',
+                    fit: BoxFit.cover,
+                    height: 100,
+                  ),
+                  LittlePurpleButton(
+                    icon: FontAwesomeIcons.search,
+                    onpress: (){},
+                  ),
+                ],
+              ),
+            )),
+        automaticallyImplyLeading: false,
+      ),
+        ),
+        body: Container(
+            
+            child: Center(
+            child: isLoading
+                ? CircularProgressIndicator()
+                : dreams.isEmpty
+                    ? Text(
+                        'No Dreams',
+                        style: TextStyle( fontSize: 24),
+                      )
+                    : GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ), 
+                      itemCount: dreams.length,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      
+                      itemBuilder: (context, index){
+                        final dream = dreams[index];
+                      return GestureDetector(
+                        onTap: ()async{
+                          await Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => DreamDetailPage(dreamId: dream.id!,),
+                            ));
+                            refreshDreams();
+                        },
+                        child: DreamCardWidget(dream: dreams[index],index: index,),
                       );
-          },
-          child: Icon(
-            FontAwesomeIcons.plus,
+                      })
+                      )
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
           
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Color(0xFFDEDDFF),
-          selectedIconTheme: IconThemeData(color: Color(0xFF7F5FFF)),
-          unselectedIconTheme: IconThemeData(color: Color(0xFFB081F7)),
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          /*currentIndex: currentIndex,
-          onTap: (index) => setState(() {
-            currentIndex = index;
-          }),*/
-          
-          elevation: 15,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.cloud,),
-              label: 'Notes',
-              ),
+    
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Color(0xFF7F5FFF),
+            onPressed: () {
+              Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddEditPage(),
+                          ),
+                        );
+            },
+            child: Icon(
+              FontAwesomeIcons.plus,
+            ),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Color(0xFFDEDDFF),
+            selectedIconTheme: IconThemeData(color: Color(0xFF7F5FFF)),
+            unselectedIconTheme: IconThemeData(color: Color(0xFFB081F7)),
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            /*currentIndex: currentIndex,
+            onTap: (index) => setState(() {
+              currentIndex = index;
+            }),*/
+            
+            elevation: 15,
+            items: [
               BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.chartPie, ),
-              label: 'Friends',
-              ),
-             
-              
-          ], 
-        ),
+                icon: Icon(FontAwesomeIcons.cloud,),
+                label: 'Notes',
+                ),
+                BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.chartPie, ),
+                label: 'Friends',
+                ),
+               
+                
+            ], 
+          ),
+      ),],
+       
     );
   }
 }

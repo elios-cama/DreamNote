@@ -4,21 +4,24 @@
 import 'package:flutter/material.dart';
 
 class DreamFormWidget extends StatelessWidget {
-  final String? category;
+  
   final String? title;
   final String? description;
-  final ValueChanged<String> onChangedCategory;
+  final String? category;
   final ValueChanged<String> onChangedTitle;
   final ValueChanged<String> onChangedDescription;
+  final ValueChanged<String> onChangedCategory;
 
   const DreamFormWidget({
     Key? key,
-    this.category = '',
+    
     this.title = '',
     this.description = '',
-    required this.onChangedCategory,
+    this.category = '',
+    
     required this.onChangedTitle,
     required this.onChangedDescription,
+    required this.onChangedCategory,
   }) : super(key: key);
 
   @override
@@ -28,11 +31,12 @@ class DreamFormWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              buildCategory(),
               buildTitle(),
               SizedBox(height: 8),
               buildDescription(),
               SizedBox(height: 16),
+              buildCategory(),
+
             ],
           ),
         ),
@@ -77,7 +81,7 @@ class DreamFormWidget extends StatelessWidget {
         style: TextStyle(color: Colors.white60, fontSize: 18),
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: 'Type something...',
+          hintText: 'Enter a category',
           hintStyle: TextStyle(color: Colors.white60),
         ),
         validator: (category) => category != null && category.isEmpty
