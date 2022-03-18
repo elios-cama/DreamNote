@@ -92,8 +92,8 @@ class _HomePageState extends State<HomePage> {
                 ? CircularProgressIndicator()
                 : dreams.isEmpty
                     ? Text(
-                        'No Dreams',
-                        style: TextStyle( fontSize: 24),
+                        'No Dreams yet',
+                        style: TextStyle( fontSize: 24, color: Colors.white),
                       )
                     : GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

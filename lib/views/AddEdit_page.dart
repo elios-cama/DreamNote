@@ -34,9 +34,9 @@ class _AddEditPageState extends State<AddEditPage> {
 
   @override
   Widget build(BuildContext context) {
+        Size size = MediaQuery.of(context).size;
 
     return Stack(
-      
       children: [
         Image.asset(
           "lib/assets/gradient.png",
@@ -45,84 +45,71 @@ class _AddEditPageState extends State<AddEditPage> {
           fit: BoxFit.cover,
         ),
         Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
-          child: AppBar(
-            //backgroundColor: Colors.white.withOpacity(0),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            bottom: PreferredSize(
-                preferredSize: Size.infinite,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'lib/assets/logo_dr.png',
-                        fit: BoxFit.cover,
-                        height: 100,
-                      ),
-                    ],
+          backgroundColor: Colors.transparent,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(100.0),
+            child: AppBar(
+              //backgroundColor: Colors.white.withOpacity(0),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              bottom: PreferredSize(
+                  preferredSize: Size.infinite,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/assets/logo_dr.png',
+                          fit: BoxFit.cover,
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                  )),
+              automaticallyImplyLeading: false,
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Form(
+                  key: _formKey,
+                  child: DreamFormWidget(
+                    title: title,
+                    category: category,
+                    description: description,
+                    onChangedCategory: (category) =>
+                        setState(() => this.category = category),
+                    onChangedTitle: (title) =>
+                        setState(() => this.title = title),
+                    onChangedDescription: (description) =>
+                        setState(() => this.description = description),
                   ),
-                )),
-            automaticallyImplyLeading: false,
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Form(
-                
-                key: _formKey,
-                child: DreamFormWidget(
-                  
-                  title: title,
-                  category: category,
-                  description: description,
-                  onChangedCategory: (title) =>
-                      setState(() => this.category = category),
-                  onChangedTitle: (title) => setState(() => this.title = title),
-                  onChangedDescription: (description) =>
-                      setState(() => this.description = description),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  buildButton(),
-                ],
-              )
-            ],
+                
+              ],
+            ),
+          ),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: buildButton(),
           ),
         ),
-      ),
       ],
-       
     );
   }
 
   Widget buildButton() {
-            Size size  = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     final isFormValid =
         title.isNotEmpty && description.isNotEmpty && category.isNotEmpty;
 
-    /*return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          onPrimary: Colors.white,
-          primary: isFormValid ? null : Colors.grey.shade700,
-        ),
-        onPressed: addOrUpdateNote,
-        child: Text('Save'),
-      ),
-    );*/
+    
     return Container(
-      width: size.width * 0.8, 
+      width: size.width * 0.8,
       margin: EdgeInsets.symmetric(vertical: 15),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

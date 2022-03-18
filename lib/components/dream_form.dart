@@ -28,16 +28,20 @@ class DreamFormWidget extends StatelessWidget {
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              buildTitle(),
-              SizedBox(height: 8),
-              buildDescription(),
-              SizedBox(height: 16),
-              buildCategory(),
-
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                buildTitle(),
+                SizedBox(height: 25),
+                buildCategory(),
+                SizedBox(height: 9),
+                buildDescription(),
+                
+                
+          
+              ],
+            ),
           ),
         ),
       );
@@ -52,7 +56,7 @@ class DreamFormWidget extends StatelessWidget {
         ),
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: 'Title',
+          hintText: 'Enter a title',
           hintStyle: TextStyle(color: Colors.white70),
         ),
         validator: (title) =>
@@ -61,7 +65,7 @@ class DreamFormWidget extends StatelessWidget {
       );
 
   Widget buildDescription() => TextFormField(
-        maxLines: 5,
+        maxLines: 50,
         initialValue: description,
         style: TextStyle(color: Colors.white60, fontSize: 18),
         decoration: InputDecoration(
@@ -76,7 +80,7 @@ class DreamFormWidget extends StatelessWidget {
       );
 
        Widget buildCategory() => TextFormField(
-        maxLines: 5,
+        maxLines: 1,
         initialValue: category,
         style: TextStyle(color: Colors.white60, fontSize: 18),
         decoration: InputDecoration(

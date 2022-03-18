@@ -47,7 +47,8 @@ class DreamCardWidget extends StatelessWidget {
               children: [
                 CircleAvatar(
                     radius: 20,
-                    backgroundImage: AssetImage("lib/assets/gradient.png")),
+                    backgroundImage: AssetImage("lib/assets/guardian.png")),
+                    
                 SizedBox(
                   width: 5,
                 ),

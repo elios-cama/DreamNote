@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:dreamnote/components/purple_button.dart';
 import 'package:dreamnote/db/database_provider.dart';
@@ -82,7 +82,7 @@ class _DreamDetailPageState extends State<DreamDetailPage> {
                         ),
                         LittlePurpleButton(
                           icon: FontAwesomeIcons.trash,
-                          onpress: ()async {
+                          onpress: () async {
                             await DatabaseProvider.db.delete(widget.dreamId);
 
                             Navigator.of(context).pop();
@@ -97,31 +97,39 @@ class _DreamDetailPageState extends State<DreamDetailPage> {
           body: isLoading
               ? Center(child: CircularProgressIndicator())
               : Padding(
-                  padding: EdgeInsets.all(12),
-                  child: ListView(
-                    padding: EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
                     children: [
+                    
                       Text(
-                        dream.title,
+                        "Title : ${dream.title}",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 15,),
                       Text(
-                        DateFormat.yMMMd().format(dream.time),
+                        "Edite le : ${DateFormat.yMMMd().format(dream.time)}",
+                        
                         style: TextStyle(color: Colors.white38),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 15,),
                       Text(
-                        dream.description,
+                        "Category : ${dream.category}",
                         style: TextStyle(color: Colors.white70, fontSize: 18),
-                      )
+                      ),
+                      SizedBox(height: 15,),
+                      Text(
+                        "Description : ${dream.title}",
+                        style: TextStyle(color: Colors.white70, fontSize: 18),
+                      ),
                     ],
                   ),
-                ),
+              ),
         ),
       ],
     );
