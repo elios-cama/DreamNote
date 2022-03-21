@@ -3,6 +3,7 @@
 import 'package:dreamnote/components/dream_form.dart';
 import 'package:dreamnote/db/database_provider.dart';
 import 'package:dreamnote/model/dream_model.dart';
+import 'package:dreamnote/views/home_page.dart';
 import 'package:flutter/material.dart';
 
 class AddEditPage extends StatefulWidget {
@@ -137,8 +138,8 @@ class _AddEditPageState extends State<AddEditPage> {
       } else {
         await addNote();
       }
+      Navigator.popAndPushNamed(context, "/homepage");
 
-      Navigator.of(context).pop();
     }
   }
 

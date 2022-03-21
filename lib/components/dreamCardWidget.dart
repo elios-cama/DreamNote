@@ -2,18 +2,17 @@
 
 import 'package:dreamnote/model/dream_model.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
-
 final _lightColors = [
-  Colors.amber.shade300,
-  Colors.lightGreen.shade300,
-  Colors.lightBlue.shade300,
-  Colors.orange.shade300,
-  Colors.pinkAccent.shade100,
-  Colors.tealAccent.shade100
+  Color(0xFFA3F7B5),
+  Color(0xFFC2BBF0),
+  Color(0xFFF7A072),
+  Color(0xFFC6E2E9),
+  Color(0xFFB5E2FA),
+  Color(0xFFE3DC95),
 ];
-
 
 class DreamCardWidget extends StatelessWidget {
   DreamCardWidget({
@@ -25,19 +24,31 @@ class DreamCardWidget extends StatelessWidget {
   final DreamModel dream;
   final int index;
 
+
   @override
   Widget build(BuildContext context) {
     final color = _lightColors[index % _lightColors.length];
     final time = DateFormat.yMMMd().format(dream.time);
     final minHeight = getMinHeight(index);
-
+    late IconData avatar;
+    if(dream.category =="friends"){avatar = FontAwesomeIcons.userFriends;}
+    else if
+    (dream.category =="Friends"){avatar = FontAwesomeIcons.userFriends;}
+    else
+    if(dream.category =="Love"){avatar = FontAwesomeIcons.userFriends;}
+    else
+    if(dream.category =="love"){avatar = FontAwesomeIcons.userFriends;}
+    else
+    if(dream.category =="Girlfriend"){avatar = FontAwesomeIcons.userFriends;}
+    else
+    if(dream.category =="Boyfriend"){avatar = FontAwesomeIcons.userFriends;}
+    else{avatar = FontAwesomeIcons.cloud;}
     return Container(
       padding: EdgeInsets.all(10),
       height: 150,
       width: 150,
-      decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(16)),
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(16)),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -45,10 +56,16 @@ class DreamCardWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
+                /*CircleAvatar(
                     radius: 20,
-                    backgroundImage: AssetImage("lib/assets/guardian.png")),
-                    
+                    backgroundImage: AssetImage("lib/assets/white.png")),*/
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
+                  child: Center(child:Icon(avatar, size: 18,)),
+                ),
                 SizedBox(
                   width: 5,
                 ),
@@ -56,7 +73,8 @@ class DreamCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(dream.category,
-                        style: TextStyle(color: Color(0xFF7F5FFF), fontSize: 15)),
+                        style:
+                            TextStyle(color: Color(0xFF7F5FFF), fontSize: 15)),
                     Text(
                       time,
                       style: TextStyle(fontSize: 9),
@@ -67,14 +85,19 @@ class DreamCardWidget extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.only(top: 10, bottom: 3),
-              child: Text(dream.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),),
+              child: Text(
+                dream.title,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
               ),
+            ),
             Text(
-                dream.description,
-                style: TextStyle(fontSize: 11,),
-                overflow: TextOverflow.fade,
-                softWrap: true,
-                )
+              dream.description,
+              style: TextStyle(
+                fontSize: 11,
+              ),
+              overflow: TextOverflow.fade,
+              softWrap: true,
+            )
           ],
         ),
       ),
@@ -82,19 +105,17 @@ class DreamCardWidget extends StatelessWidget {
   }
 }
 
-
-
- double getMinHeight(int index) {
-    switch (index % 4) {
-      case 0:
-        return 100;
-      case 1:
-        return 150;
-      case 2:
-        return 150;
-      case 3:
-        return 100;
-      default:
-        return 100;
-    }
+double getMinHeight(int index) {
+  switch (index % 4) {
+    case 0:
+      return 100;
+    case 1:
+      return 150;
+    case 2:
+      return 150;
+    case 3:
+      return 100;
+    default:
+      return 100;
   }
+}
