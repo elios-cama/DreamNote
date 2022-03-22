@@ -31,18 +31,18 @@ class DreamCardWidget extends StatelessWidget {
     final time = DateFormat.yMMMd().format(dream.time);
     final minHeight = getMinHeight(index);
     late IconData avatar;
-    if(dream.category =="friends"){avatar = FontAwesomeIcons.userFriends;}
+    if(dream.category =="friends"){avatar = Icons.group_outlined;}
     else if
-    (dream.category =="Friends"){avatar = FontAwesomeIcons.userFriends;}
+    (dream.category =="Friends"){avatar = Icons.group_outlined;}
     else
     if(dream.category =="Love"){avatar = FontAwesomeIcons.userFriends;}
     else
-    if(dream.category =="love"){avatar = FontAwesomeIcons.userFriends;}
+    if(dream.category =="love"){avatar = Icons.favorite_border_outlined;}
     else
-    if(dream.category =="Girlfriend"){avatar = FontAwesomeIcons.userFriends;}
+    if(dream.category =="Girlfriend"){avatar = Icons.favorite_border_outlined;}
     else
-    if(dream.category =="Boyfriend"){avatar = FontAwesomeIcons.userFriends;}
-    else{avatar = FontAwesomeIcons.cloud;}
+    if(dream.category =="Boyfriend"){avatar = Icons.favorite_border_outlined;}
+    else{avatar = Icons.cloud_queue;}
     return Container(
       padding: EdgeInsets.all(10),
       height: 150,
@@ -64,7 +64,7 @@ class DreamCardWidget extends StatelessWidget {
                   width: 40,
                   decoration: BoxDecoration(
                       color: Colors.white, shape: BoxShape.circle),
-                  child: Center(child:Icon(avatar, size: 18,)),
+                  child: Center(child:Icon(avatar, size: 20,color: Colors.black,)),
                 ),
                 SizedBox(
                   width: 5,
