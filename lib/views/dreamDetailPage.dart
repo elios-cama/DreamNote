@@ -10,10 +10,10 @@ import 'package:intl/intl.dart';
 
 class DreamDetailPage extends StatefulWidget {
   final int dreamId;
-
+  final bool darktheme;
   const DreamDetailPage({
     Key? key,
-    required this.dreamId,
+    required this.dreamId,  required this.darktheme, 
   }) : super(key: key);
   @override
   State<DreamDetailPage> createState() => _DreamDetailPageState();
@@ -40,12 +40,19 @@ class _DreamDetailPageState extends State<DreamDetailPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        widget.darktheme ?
         Image.asset(
-          "lib/assets/gradient.png",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover,
-        ),
+            "lib/assets/gradient.png",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ) :
+          Image.asset(
+            "lib/assets/black_theme.png",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: PreferredSize(
@@ -69,6 +76,7 @@ class _DreamDetailPageState extends State<DreamDetailPage> {
                               await Navigator.of(context)
                                   .push(MaterialPageRoute(
                                 builder: (context) => AddEditPage(
+                                  DarkTheme: widget.darktheme,
                                   dream: dream,
                                 ),
                               ));

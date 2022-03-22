@@ -66,6 +66,13 @@ CREATE TABLE $tableDreams (
     final result = await daba.query(tableDreams, orderBy: orderBy);
     return result.map((json) => DreamModel.fromJson(json)).toList();
   }
+  Future<List<DreamModel>> readSearchItems(String keyword) async {
+    final daba = await db.database;
+    final orderBy = '${DreamField.time} ASC';
+    final result = await daba.query(tableDreams, orderBy: orderBy, where: '_description LIKE ?', whereArgs: ['%$keyword%']);
+    return result.map((json) => DreamModel.fromJson(json)).toList();
+  }
+
 
   Future<int> update(DreamModel dream) async {
     final daba = await db.database;

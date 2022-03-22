@@ -8,9 +8,10 @@ import 'package:flutter/material.dart';
 
 class AddEditPage extends StatefulWidget {
   final DreamModel? dream;
+  final bool DarkTheme;
   const AddEditPage({
     Key? key,
-    this.dream,
+    this.dream, required this.DarkTheme,
   }) : super(key: key);
 
   @override
@@ -39,12 +40,19 @@ class _AddEditPageState extends State<AddEditPage> {
 
     return Stack(
       children: [
+       widget.DarkTheme ?
         Image.asset(
-          "lib/assets/gradient.png",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover,
-        ),
+            "lib/assets/gradient.png",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ) :
+          Image.asset(
+            "lib/assets/black_theme.png",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: PreferredSize(
