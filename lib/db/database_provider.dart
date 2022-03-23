@@ -66,13 +66,98 @@ CREATE TABLE $tableDreams (
     final result = await daba.query(tableDreams, orderBy: orderBy);
     return result.map((json) => DreamModel.fromJson(json)).toList();
   }
+
   Future<List<DreamModel>> readSearchItems(String keyword) async {
     final daba = await db.database;
     final orderBy = '${DreamField.time} ASC';
-    final result = await daba.query(tableDreams, orderBy: orderBy, where: '_description LIKE ?', whereArgs: ['%$keyword%']);
+    final result = await daba.query(tableDreams,
+        orderBy: orderBy,
+        where: '_description LIKE ?',
+        whereArgs: ['%$keyword%']);
     return result.map((json) => DreamModel.fromJson(json)).toList();
   }
 
+  Future<List> readAllCategories() async {
+    double friends = 0;
+    double love = 0;
+    double nightmare = 0;
+    double lucid = 0;
+    double family = 0;
+    double animals = 0;
+    double food = 0;
+    double random = 0;
+    final orderBy = '${DreamField.time} ASC';
+    final daba = await db.database;
+    final result = await daba.query(
+      tableDreams,
+      orderBy: orderBy,
+    );
+    result.map((json) => DreamModel.fromJson(json)).toList();
+    for (var i = 0; i < result.length; i++) {
+      print(result[i]['category']);
+      switch (result[i]['category']) {
+        case "friends":
+          {
+            friends += 1;
+            
+          }
+
+          break;
+        case "Love":
+          {
+            love += 1;
+          }
+
+          break;
+        case "nightmare":
+          {
+            nightmare += 1;
+          }
+
+          break;
+        case "lucid":
+          {
+            lucid += 1;
+          }
+
+          break;
+        case "family":
+          {
+            family += 1;
+          }
+
+          break;
+        case "animals":
+          {
+            animals += 1;
+          }
+
+          break;
+        case "food":
+          {
+            food += 1;
+          }
+
+          break;
+        default:
+          {
+            random += 1;
+          }
+          break;
+      }
+    }
+    List<double> categoriesForChart = [
+      friends,
+      love,
+      nightmare,
+      lucid,
+      family,
+      animals,
+      food,
+      random
+    ];
+    return categoriesForChart;
+  }
 
   Future<int> update(DreamModel dream) async {
     final daba = await db.database;

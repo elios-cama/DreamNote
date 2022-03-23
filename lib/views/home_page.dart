@@ -24,7 +24,9 @@ class _HomePageState extends State<HomePage> {
   late List<DreamModel> dreams;
   bool isLoading = false;
   bool darkTheme = true;
-  int index = 0;
+  int indexPage = 0;
+  late bool isHomePage;
+
   @override
   void initState() {
     super.initState();
@@ -45,6 +47,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (indexPage == 0) {
+      isHomePage = true;
+    } else {
+      isHomePage = false;
+    }
+   
     return Stack(
       children: [
         darkTheme
@@ -106,45 +114,47 @@ class _HomePageState extends State<HomePage> {
               automaticallyImplyLeading: false,
             ),
           ),
-          body: 
-          Container(
-              child: Center(
-                  child: isLoading
-                      ? CircularProgressIndicator()
-                      : dreams.isEmpty
-                          ? Text(
-                              'No Dreams yet',
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white),
-                            )
-                          : GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10,
-                              ),
-                              itemCount: dreams.length,
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              itemBuilder: (context, index) {
-                                final dream = dreams[index];
-                                return GestureDetector(
-                                  onTap: () async {
-                                    await Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) => DreamDetailPage(
-                                        dreamId: dream.id!,
-                                        darktheme: darkTheme,
-                                      ),
-                                    ));
-                                    refreshDreams();
-                                  },
-                                  child: DreamCardWidget(
-                                    dream: dreams[index],
-                                    index: index,
+          body: Container(
+            child: Center(
+              child: isLoading
+                  ? CircularProgressIndicator()
+                  : dreams.isEmpty
+                      ? Text(
+                          'No Dreams yet',
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        )
+                      : isHomePage?
+                      GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
+                          itemCount: dreams.length,
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          itemBuilder: (context, index) {
+                            final dream = dreams[index];
+                            return GestureDetector(
+                              onTap: () async {
+                                await Navigator.of(context)
+                                    .push(MaterialPageRoute(
+                                  builder: (context) => DreamDetailPage(
+                                    dreamId: dream.id!,
+                                    darktheme: darkTheme,
                                   ),
-                                );
-                              }))),
+                                ));
+                                refreshDreams();
+                              },
+                              child: DreamCardWidget(
+                                dream: dreams[index],
+                                index: index,
+                              ),
+                            );
+                          },
+                        ): AnalyticsPage(DarkTheme: darkTheme),
+            ),
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
           floatingActionButton: FloatingActionButton(
@@ -153,7 +163,9 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddEditPage(DarkTheme: darkTheme,),
+                  builder: (context) => AddEditPage(
+                    DarkTheme: darkTheme,
+                  ),
                 ),
               );
             },
@@ -168,12 +180,10 @@ class _HomePageState extends State<HomePage> {
             unselectedIconTheme: IconThemeData(color: Color(0xFFB081F7)),
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            currentIndex: index,
+            currentIndex: indexPage,
             onTap: (index) => setState(() {
-              index = index;
-              print(index);
+              indexPage = index;
             }),
-
             elevation: 15,
             items: [
               BottomNavigationBarItem(
