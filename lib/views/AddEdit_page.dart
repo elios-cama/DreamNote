@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_this
 
+import 'package:dreamnote/components/darkMode_bakcground.dart';
 import 'package:dreamnote/components/dream_form.dart';
+import 'package:dreamnote/components/gradient_background.dart';
 import 'package:dreamnote/db/database_provider.dart';
 import 'package:dreamnote/model/dream_model.dart';
-import 'package:dreamnote/views/home_page.dart';
 import 'package:flutter/material.dart';
 
 class AddEditPage extends StatefulWidget {
@@ -40,25 +41,15 @@ class _AddEditPageState extends State<AddEditPage> {
 
     return Stack(
       children: [
-       widget.DarkTheme ?
-        Image.asset(
-            "lib/assets/gradient.png",
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ) :
-          Image.asset(
-            "lib/assets/black_theme.png",
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
+       widget.DarkTheme
+            ? Gradient_WIdget()
+            : DarkMode_Widget(),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.0),
             child: AppBar(
-              //backgroundColor: Colors.white.withOpacity(0),
+              
               backgroundColor: Colors.transparent,
               elevation: 0,
               bottom: PreferredSize(
@@ -90,7 +81,7 @@ class _AddEditPageState extends State<AddEditPage> {
                     category: category,
                     description: description,
                     onChangedCategory: (category) =>
-                        setState(() => this.category = category),
+                        setState(() => this.category = category.toLowerCase()),
                     onChangedTitle: (title) =>
                         setState(() => this.title = title),
                     onChangedDescription: (description) =>
@@ -174,21 +165,3 @@ class _AddEditPageState extends State<AddEditPage> {
   }
 }
 
-/*Scaffold(
-    backgroundColor: Colors.black12,
-        appBar: AppBar(
-          actions: [buildButton()],
-        ),
-        body: Form(
-          key: _formKey,
-          child: DreamFormWidget(
-            category: category,
-            title: title,
-            description: description,
-            onChangedCategory: (category) => setState(() =>this.category = category),
-            onChangedTitle: (title) => setState(() => this.title = title),
-            onChangedDescription: (description) =>
-                setState(() => this.description = description),
-          ),
-        ),
-      );*/

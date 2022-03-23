@@ -1,5 +1,4 @@
 import 'package:dreamnote/views/home_page.dart';
-import 'package:dreamnote/views/search_page.dart';
 import 'package:dreamnote/views/welcome_page.dart';
 import 'package:flutter/material.dart';
 

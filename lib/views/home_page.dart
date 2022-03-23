@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:dreamnote/components/darkMode_bakcground.dart';
 import 'package:dreamnote/components/dreamCardWidget.dart';
+import 'package:dreamnote/components/gradient_background.dart';
 import 'package:dreamnote/components/purple_button.dart';
 import 'package:dreamnote/db/database_provider.dart';
 import 'package:dreamnote/model/dream_model.dart';
@@ -8,9 +10,7 @@ import 'package:dreamnote/views/AddEdit_page.dart';
 import 'package:dreamnote/views/analytics_page.dart';
 import 'package:dreamnote/views/dreamDetailPage.dart';
 import 'package:dreamnote/views/search_page.dart';
-import 'package:dreamnote/views/welcome_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -56,18 +56,8 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       children: [
         darkTheme
-            ? Image.asset(
-                "lib/assets/gradient.png",
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              )
-            : Image.asset(
-                "lib/assets/black_theme.png",
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
+            ? Gradient_WIdget()
+            : DarkMode_Widget(),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: PreferredSize(
@@ -205,3 +195,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

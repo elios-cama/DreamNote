@@ -92,10 +92,9 @@ CREATE TABLE $tableDreams (
       tableDreams,
       orderBy: orderBy,
     );
-    result.map((json) => DreamModel.fromJson(json)).toList();
+    
     for (var i = 0; i < result.length; i++) {
-      print(result[i]['category']);
-      switch (result[i]['category']) {
+      switch (result[i]['_category']) {
         case "friends":
           {
             friends += 1;
@@ -103,7 +102,7 @@ CREATE TABLE $tableDreams (
           }
 
           break;
-        case "Love":
+        case "love":
           {
             love += 1;
           }
@@ -182,24 +181,5 @@ CREATE TABLE $tableDreams (
     final daba = await db.database;
   }
 
-  /*addNewDream(DreamModel dream) async {
-    final db = await database;
-    db.insert(
-      "dreams",
-      dream.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-
-  Future<dynamic> getDreams() async{
-    final db = await database;
-    var res = await db.query("dreams");
-    if(res.length == 0){
-      return Null;
-    }else{
-      var resultMap = res.toList();
-      return resultMap.isNotEmpty ? resultMap : Null;
-    }
-  }*/
+  
 }

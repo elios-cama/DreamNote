@@ -2,7 +2,9 @@
 
 import 'dart:core';
 
+import 'package:dreamnote/components/darkMode_bakcground.dart';
 import 'package:dreamnote/components/dreamCardWidget.dart';
+import 'package:dreamnote/components/gradient_background.dart';
 import 'package:dreamnote/db/database_provider.dart';
 import 'package:dreamnote/model/dream_model.dart';
 import 'package:dreamnote/views/dreamDetailPage.dart';
@@ -47,19 +49,9 @@ class _SearchPageState extends State<SearchPage> {
     Future<List<DreamModel>> dreamlist;
     return Stack(
       children: [
-        widget.DarkTheme ?
-        Image.asset(
-            "lib/assets/gradient.png",
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ) :
-          Image.asset(
-            "lib/assets/black_theme.png",
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
+        widget.DarkTheme
+            ? Gradient_WIdget()
+            : DarkMode_Widget(),
         Scaffold(
             appBar: AppBar(
               centerTitle: true,

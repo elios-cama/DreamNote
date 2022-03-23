@@ -1,8 +1,7 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:dreamnote/model/dream_model.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 final _lightColors = [
@@ -29,19 +28,21 @@ class DreamCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = _lightColors[index % _lightColors.length];
     final time = DateFormat.yMMMd().format(dream.time);
-    final minHeight = getMinHeight(index);
+    
     late IconData avatar;
-    if(dream.category =="friends"){avatar = Icons.group_outlined;}
-    else if
-    (dream.category =="Friends"){avatar = Icons.group_outlined;}
+    if(dream.category.toLowerCase() =="friends"){avatar = Icons.group_outlined;}
     else
-    if(dream.category =="Love"){avatar = FontAwesomeIcons.userFriends;}
+    if(dream.category.toLowerCase() =="love"){avatar = Icons.favorite_border_outlined;}
     else
-    if(dream.category =="love"){avatar = Icons.favorite_border_outlined;}
+    if(dream.category.toLowerCase() =="nightmare"){avatar = Icons.local_fire_department_outlined;}
     else
-    if(dream.category =="Girlfriend"){avatar = Icons.favorite_border_outlined;}
+    if(dream.category.toLowerCase() =="lucid"){avatar = Icons.light_mode_outlined;}
     else
-    if(dream.category =="Boyfriend"){avatar = Icons.favorite_border_outlined;}
+    if(dream.category.toLowerCase() =="family"){avatar = Icons.family_restroom_outlined;}
+    else
+    if(dream.category.toLowerCase() =="animals"){avatar = Icons.pets_outlined;}
+    else
+    if(dream.category.toLowerCase() =="food"){avatar = Icons.fastfood_outlined;}
     else{avatar = Icons.cloud_queue;}
     return Container(
       padding: EdgeInsets.all(10),

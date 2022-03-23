@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:dreamnote/db/database_provider.dart';
-import 'package:dreamnote/model/dream_model.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -50,49 +49,46 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   Widget build(BuildContext context) {
     
    final colorList = <Color>[
-    Color(0xfffdcb6e),
-    Color(0xff0984e3),
-    Color(0xfffd79a8),
-    Color(0xffe17055),
-    Color(0xff6c5ce7),
-      Colors.green,
-      Colors.blue,
-      Colors.red
+    Color(0xff94B0DA),
+    Color(0xffF0BCD4),
+    Color(0xffE05263),
+    Color(0xffD9DCD6),
+    Color(0xffBBADFF),
+    Color(0xff899878),
+    Color(0xffECBA82),
+    Color(0xffB7B6C1),
   ];
     return isLoading?
     Center(child: CircularProgressIndicator())
     :
-    Center(
-      child: PieChart(
+    PieChart(
     dataMap: dataMap,
-    animationDuration: Duration(milliseconds: 800),
+    animationDuration: Duration(milliseconds: 1500),
     chartLegendSpacing: 32,
-    chartRadius: MediaQuery.of(context).size.width / 3.2,
+    chartRadius: MediaQuery.of(context).size.width / 2.8,
     colorList: colorList,
     initialAngleInDegree: 0,
     chartType: ChartType.ring,
     ringStrokeWidth: 32,
     centerText: "DREAMS",
     legendOptions: LegendOptions(
-      showLegendsInRow: false,
-      legendPosition: LegendPosition.right,
-      showLegends: true,
-      legendShape: BoxShape.circle,
-      legendTextStyle: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: widget.DarkTheme? Colors.black : Colors.white,
-      ),
+    showLegendsInRow: false,
+    legendPosition: LegendPosition.right,
+    showLegends: true,
+    legendShape: BoxShape.circle,
+    legendTextStyle: TextStyle(
+      fontWeight: FontWeight.bold,
+      color: widget.DarkTheme? Colors.black : Colors.white,
+    ),
     ),
     chartValuesOptions: ChartValuesOptions(
-      showChartValueBackground: true,
-      showChartValues: true,
-      showChartValuesInPercentage: false,
-      showChartValuesOutside: false,
-      decimalPlaces: 0,
+    showChartValueBackground: true,
+    showChartValues: true,
+    showChartValuesInPercentage: true,
+    showChartValuesOutside: true,
+    decimalPlaces: 0,
     ),
-    // gradientList: ---To add gradient colors---
-    // emptyColorGradient: ---Empty Color gradient---
-    ),
+    
     );
   }
 }

@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:dreamnote/components/darkMode_bakcground.dart';
+import 'package:dreamnote/components/gradient_background.dart';
 import 'package:dreamnote/components/purple_button.dart';
 import 'package:dreamnote/db/database_provider.dart';
 import 'package:dreamnote/model/dream_model.dart';
@@ -40,19 +42,9 @@ class _DreamDetailPageState extends State<DreamDetailPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        widget.darktheme ?
-        Image.asset(
-            "lib/assets/gradient.png",
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ) :
-          Image.asset(
-            "lib/assets/black_theme.png",
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
+        widget.darktheme
+            ? Gradient_WIdget()
+            : DarkMode_Widget(),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: PreferredSize(
