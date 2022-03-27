@@ -48,6 +48,7 @@ class DreamFormWidget extends StatelessWidget {
 
   Widget buildTitle() => TextFormField(
         maxLines: 1,
+        maxLength: 20,
         initialValue: title,
         style: TextStyle(
           color: Colors.white70,
@@ -55,6 +56,7 @@ class DreamFormWidget extends StatelessWidget {
           fontSize: 24,
         ),
         decoration: InputDecoration(
+          counterText: "",
           border: InputBorder.none,
           hintText: 'Enter a title',
           hintStyle: TextStyle(color: Colors.white70),
@@ -81,11 +83,14 @@ class DreamFormWidget extends StatelessWidget {
 
        Widget buildCategory() => TextFormField(
         maxLines: 1,
+        
+        maxLength: 12,
         initialValue: category,
         style: TextStyle(color: Colors.white60, fontSize: 18),
         decoration: InputDecoration(
+          counterText: "",
           border: InputBorder.none,
-          hintText: 'Enter a category',
+          hintText: 'friends, love, family...',
           hintStyle: TextStyle(color: Colors.white60),
         ),
         validator: (category) => category != null && category.isEmpty

@@ -81,9 +81,9 @@ class _HomePageState extends State<HomePage> {
                               });
                             }),
                         Image.asset(
-                          'lib/assets/logo_dr.png',
+                          'lib/assets/dreamnote.png',
                           fit: BoxFit.cover,
-                          height: 100,
+                          height: 85,
                         ),
                         LittlePurpleButton(
                           icon: FontAwesomeIcons.search,
@@ -105,6 +105,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           body: Container(
+            padding: EdgeInsets.only(top: 20),
             child: Center(
               child: isLoading
                   ? CircularProgressIndicator()

@@ -60,9 +60,9 @@ class _AddEditPageState extends State<AddEditPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'lib/assets/logo_dr.png',
+                          'lib/assets/dreamnote.png',
                           fit: BoxFit.cover,
-                          height: 100,
+                          height: 85,
                         ),
                       ],
                     ),

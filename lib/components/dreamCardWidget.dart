@@ -44,6 +44,7 @@ class DreamCardWidget extends StatelessWidget {
     else
     if(dream.category.toLowerCase() =="food"){avatar = Icons.fastfood_outlined;}
     else{avatar = Icons.cloud_queue;}
+
     return Container(
       padding: EdgeInsets.all(10),
       height: 150,
@@ -61,6 +62,7 @@ class DreamCardWidget extends StatelessWidget {
                     radius: 20,
                     backgroundImage: AssetImage("lib/assets/white.png")),*/
                 Container(
+                  
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
@@ -73,9 +75,12 @@ class DreamCardWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(dream.category,
-                        style:
-                            TextStyle(color: Color(0xFF7F5FFF), fontSize: 15)),
+                    Container(
+                      child: Text(dream.category,
+                      overflow: TextOverflow.fade,
+                          style:
+                              TextStyle(color: Color(0xFF7F5FFF), fontSize: 15)),
+                    ),
                     Text(
                       time,
                       style: TextStyle(fontSize: 9),

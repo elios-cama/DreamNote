@@ -28,14 +28,14 @@ class WelcomePage extends StatelessWidget {
               child: Container(
                 margin: EdgeInsets.only(top: 150),
                 height: 250,
-                child: Image.asset('lib/assets/logo_dr.png'),
+                child: Image.asset('lib/assets/dreamnote.png'),
               ),
             ),
             
             DelayedAnimation(
               delay: 2500,
               child: RoundedPurpleButton(
-                text: 'Se connecter',
+                text: 'Log in',
                 press: () {
                   Navigator.push(
                     context,

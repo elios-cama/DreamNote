@@ -76,9 +76,9 @@ class _DreamDetailPageState extends State<DreamDetailPage> {
                               refreshDreams();
                             }),
                         Image.asset(
-                          'lib/assets/logo_dr.png',
+                          'lib/assets/dreamnote.png',
                           fit: BoxFit.cover,
-                          height: 100,
+                          height: 85,
                         ),
                         LittlePurpleButton(
                           icon: FontAwesomeIcons.trash,
@@ -113,7 +113,7 @@ class _DreamDetailPageState extends State<DreamDetailPage> {
                       ),
                       SizedBox(height: 15,),
                       Text(
-                        "Edite le : ${DateFormat.yMMMd().format(dream.time)}",
+                        "Written on : ${DateFormat.yMMMd().format(dream.time)}",
                         
                         style: TextStyle(color: Colors.white38),
                       ),
