@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dreamnote">
+    package="com.elioscama.dreamnote">
    <application
         android:label="dreamnote"
         android:name="${applicationName}"
