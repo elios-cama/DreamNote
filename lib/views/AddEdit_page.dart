@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_this
 
+import 'package:dreamnote/ad_helper.dart';
 import 'package:dreamnote/components/darkMode_bakcground.dart';
 import 'package:dreamnote/components/dream_form.dart';
 import 'package:dreamnote/components/gradient_background.dart';
@@ -12,7 +13,8 @@ class AddEditPage extends StatefulWidget {
   final bool DarkTheme;
   const AddEditPage({
     Key? key,
-    this.dream, required this.DarkTheme,
+    this.dream,
+    required this.DarkTheme,
   }) : super(key: key);
 
   @override
@@ -36,20 +38,22 @@ class _AddEditPageState extends State<AddEditPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-        Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Stack(
       children: [
-       widget.DarkTheme
-            ? Gradient_WIdget()
-            : DarkMode_Widget(),
+        widget.DarkTheme ? Gradient_WIdget() : DarkMode_Widget(),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.0),
             child: AppBar(
-              
               backgroundColor: Colors.transparent,
               elevation: 0,
               bottom: PreferredSize(
@@ -88,7 +92,6 @@ class _AddEditPageState extends State<AddEditPage> {
                         setState(() => this.description = description),
                   ),
                 ),
-                
               ],
             ),
           ),
@@ -107,7 +110,6 @@ class _AddEditPageState extends State<AddEditPage> {
     final isFormValid =
         title.isNotEmpty && description.isNotEmpty && category.isNotEmpty;
 
-    
     return Container(
       width: size.width * 0.8,
       margin: EdgeInsets.symmetric(vertical: 15),
@@ -137,8 +139,8 @@ class _AddEditPageState extends State<AddEditPage> {
       } else {
         await addNote();
       }
-      Navigator.popAndPushNamed(context, "/homepage");
 
+      Navigator.popAndPushNamed(context, "/homepage");
     }
   }
 
@@ -164,4 +166,3 @@ class _AddEditPageState extends State<AddEditPage> {
     await DatabaseProvider.db.create(dream);
   }
 }
-
